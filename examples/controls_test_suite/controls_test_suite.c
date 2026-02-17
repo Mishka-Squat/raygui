@@ -50,12 +50,12 @@
 #include "../styles/style_dark.h"              // raygui style: dark
 #include "../styles/style_bluish.h"            // raygui style: bluish
 #include "../styles/style_terminal.h"          // raygui style: terminal
-#include "../styles/style_candy.h"                 
-#include "../styles/style_cherry.h"             
-#include "../styles/style_ashes.h"              
-#include "../styles/style_enefete.h"                
-#include "../styles/style_sunny.h"              
-#include "../styles/style_amber.h"              
+#include "../styles/style_candy.h"
+#include "../styles/style_cherry.h"
+#include "../styles/style_ashes.h"
+#include "../styles/style_enefete.h"
+#include "../styles/style_sunny.h"
+#include "../styles/style_amber.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -64,14 +64,11 @@ int main()
 {
     // Initialization
     //---------------------------------------------------------------------------------------
-    const float screenScale = 2.f;
-    const int screenWidth = 960 * screenScale;
-    const int screenHeight = 560 * screenScale;
+    const int screenWidth = 960;
+    const int screenHeight = 560;
 
     InitWindow(screenWidth, screenHeight, "raygui - controls test suite");
     SetExitKey(0);
-
-    GuiSetScale(screenScale);
 
     // GUI controls initialization
     //----------------------------------------------------------------------------------
@@ -206,7 +203,7 @@ int main()
         BeginDrawing();
 
             ClearBackground(GetColor(GuiGetStyle(DEFAULT, BACKGROUND_COLOR)));
-            
+
             // raygui: controls drawing
             //----------------------------------------------------------------------------------
             // Check all possible events that require GuiLock
@@ -271,7 +268,7 @@ int main()
             //GuiDisable();
             GuiSlider((Rectangle){ 355, 400, 165, 20 }, "TEST", TextFormat("%2.2f", sliderValue), &sliderValue, -50, 100);
             GuiSliderBar((Rectangle){ 320, 430, 200, 20 }, NULL, TextFormat("%i", (int)sliderBarValue), &sliderBarValue, 0, 100);
-            
+
             GuiProgressBar((Rectangle){ 320, 460, 200, 20 }, NULL, TextFormat("%i%%", (int)(progressValue*100)), &progressValue, 0.0f, 1.0f);
             GuiEnable();
 

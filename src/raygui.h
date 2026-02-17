@@ -404,7 +404,7 @@
     #endif
 #endif
 #if !defined(GUI_POINTER_POSITION)
-    #define GUI_POINTER_POSITION    GuiGetMousePosition()
+    #define GUI_POINTER_POSITION    GetMousePosition()
 #endif
 #if !defined(GUI_KEY_DOWN)
     #define GUI_KEY_DOWN(key)       IsKeyDown(key)
@@ -733,7 +733,6 @@ RAYGUIAPI void GuiLock(void);                                   // Lock gui cont
 RAYGUIAPI void GuiUnlock(void);                                 // Unlock gui controls (global state)
 RAYGUIAPI bool GuiIsLocked(void);                               // Check if gui is locked (global state)
 RAYGUIAPI void GuiSetAlpha(float alpha);                        // Set gui controls alpha (global state), alpha goes from 0.0f to 1.0f
-RAYGUIAPI void GuiSetScale(float scale);                        // Set gui controls scale (global state)
 RAYGUIAPI void GuiSetState(int state);                          // Set gui state (global state)
 RAYGUIAPI int GuiGetState(void);                                // Get gui state (global state)
 
@@ -1437,7 +1436,6 @@ static GuiState guiState = STATE_NORMAL;        // Gui global state, if !STATE_N
 static Font guiFont = { 0 };                    // Gui current font (WARNING: highly coupled to raylib)
 static bool guiLocked = false;                  // Gui lock state (no inputs processed)
 static float guiAlpha = 1.0f;                   // Gui controls transparency
-static float guiScale = 1.0f;                   // Gui control scale
 
 static unsigned int guiIconScale = 1;           // Gui icon default scale (if icons enabled)
 
@@ -1582,11 +1580,6 @@ static Vector2 Vector2Scale(Vector2 vec, float scale)
     return result;
 }
 
-static Vector2 GuiGetMousePosition()
-{
-    return Vector2Scale(GetMousePosition(), 1 / guiScale);
-}
-
 //----------------------------------------------------------------------------------
 // Gui Setup Functions Definition
 //----------------------------------------------------------------------------------
@@ -1614,12 +1607,6 @@ void GuiSetAlpha(float alpha)
     else if (alpha > 1.0f) alpha = 1.0f;
 
     guiAlpha = alpha;
-}
-
-// Set gui controls global scale
-void GuiSetScale(float scale)
-{
-    guiScale = scale;
 }
 
 // Set gui state (global state)
@@ -3879,11 +3866,9 @@ int GuiColorBarAlpha(Rectangle bounds, const char *text, float *alpha)
         }
     }
     //--------------------------------------------------------------------
-
     // Draw control
     //--------------------------------------------------------------------
 
-    Rectangle scaledBounds = RectangleScale(bounds, guiScale);
     // Draw alpha bar: checked background
     if (state != STATE_DISABLED)
     {
@@ -3899,9 +3884,9 @@ int GuiColorBarAlpha(Rectangle bounds, const char *text, float *alpha)
             }
         }
 
-        DrawRectangleGradientEx(scaledBounds, RAYGUI_CLITERAL(Color){ 255, 255, 255, 0 }, RAYGUI_CLITERAL(Color){ 255, 255, 255, 0 }, Fade(RAYGUI_CLITERAL(Color){ 0, 0, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 0, 255 }, guiAlpha));
+        DrawRectangleGradientEx(bounds, RAYGUI_CLITERAL(Color){ 255, 255, 255, 0 }, RAYGUI_CLITERAL(Color){ 255, 255, 255, 0 }, Fade(RAYGUI_CLITERAL(Color){ 0, 0, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 0, 255 }, guiAlpha));
     }
-    else DrawRectangleGradientEx(scaledBounds, Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha));
+    else DrawRectangleGradientEx(bounds, Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha));
 
     GuiDrawRectangle(bounds, GuiGetStyle(COLORPICKER, BORDER_WIDTH), GetColor(GuiGetStyle(COLORPICKER, BORDER + state*3)), BLANK);
 
@@ -3977,22 +3962,20 @@ int GuiColorBarHue(Rectangle bounds, const char *text, float *hue)
         }
     }
     //--------------------------------------------------------------------
-
-    Rectangle scaledBounds = RectangleScale(bounds, guiScale);
     // Draw control
     //--------------------------------------------------------------------
     if (state != STATE_DISABLED)
     {
         // Draw hue bar:color bars
         // TODO: Use directly DrawRectangleGradientEx(bounds, color1, color2, color2, color1);
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y), (int)scaledBounds.width, (int)ceilf(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 255, 0, 255 }, guiAlpha));
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y + scaledBounds.height/6), (int)scaledBounds.width, (int)ceilf(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 255, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 0, 255 }, guiAlpha));
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y + 2*(scaledBounds.height/6)), (int)scaledBounds.width, (int)ceilf(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 255, 255 }, guiAlpha));
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y + 3*(scaledBounds.height/6)), (int)scaledBounds.width, (int)ceilf(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 255, 255 }, guiAlpha));
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y + 4*(scaledBounds.height/6)), (int)scaledBounds.width, (int)ceilf(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 255, 255 }, guiAlpha));
-        DrawRectangleGradientV((int)scaledBounds.x, (int)(scaledBounds.y + 5*(scaledBounds.height/6)), (int)scaledBounds.width, (int)(scaledBounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 0, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y), (int)bounds.width, (int)ceilf(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 255, 0, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y + bounds.height/6), (int)bounds.width, (int)ceilf(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 255, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 0, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y + 2*(bounds.height/6)), (int)bounds.width, (int)ceilf(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 0, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 255, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y + 3*(bounds.height/6)), (int)bounds.width, (int)ceilf(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 255, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 255, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y + 4*(bounds.height/6)), (int)bounds.width, (int)ceilf(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 0, 0, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 255, 255 }, guiAlpha));
+        DrawRectangleGradientV((int)bounds.x, (int)(bounds.y + 5*(bounds.height/6)), (int)bounds.width, (int)(bounds.height/6), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 255, 255 }, guiAlpha), Fade(RAYGUI_CLITERAL(Color){ 255, 0, 0, 255 }, guiAlpha));
     }
-    else DrawRectangleGradientV((int)scaledBounds.x, (int)scaledBounds.y, (int)scaledBounds.width, (int)scaledBounds.height, Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), guiAlpha), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha));
+    else DrawRectangleGradientV((int)bounds.x, (int)bounds.y, (int)bounds.width, (int)bounds.height, Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), guiAlpha), Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), guiAlpha));
 
     GuiDrawRectangle(bounds, GuiGetStyle(COLORPICKER, BORDER_WIDTH), GetColor(GuiGetStyle(COLORPICKER, BORDER + state*3)), BLANK);
 
@@ -4141,14 +4124,12 @@ int GuiColorPanelHSV(Rectangle bounds, const char *text, Vector3 *colorHsv)
         }
     }
     //--------------------------------------------------------------------
-
-    Rectangle scaledBounds = RectangleScale(bounds, guiScale);
     // Draw control
     //--------------------------------------------------------------------
     if (state != STATE_DISABLED)
     {
-        DrawRectangleGradientEx(scaledBounds, Fade(colWhite, guiAlpha), Fade(colWhite, guiAlpha), Fade(maxHueCol, guiAlpha), Fade(maxHueCol, guiAlpha));
-        DrawRectangleGradientEx(scaledBounds, Fade(colBlack, 0), Fade(colBlack, guiAlpha), Fade(colBlack, guiAlpha), Fade(colBlack, 0));
+        DrawRectangleGradientEx(bounds, Fade(colWhite, guiAlpha), Fade(colWhite, guiAlpha), Fade(maxHueCol, guiAlpha), Fade(maxHueCol, guiAlpha));
+        DrawRectangleGradientEx(bounds, Fade(colBlack, 0), Fade(colBlack, guiAlpha), Fade(colBlack, guiAlpha), Fade(colBlack, 0));
 
         // Draw color picker: selector
         Rectangle selector = { pickerSelector.x - GuiGetStyle(COLORPICKER, COLOR_SELECTOR_SIZE)/2, pickerSelector.y - GuiGetStyle(COLORPICKER, COLOR_SELECTOR_SIZE)/2, (float)GuiGetStyle(COLORPICKER, COLOR_SELECTOR_SIZE), (float)GuiGetStyle(COLORPICKER, COLOR_SELECTOR_SIZE) };
@@ -4156,7 +4137,7 @@ int GuiColorPanelHSV(Rectangle bounds, const char *text, Vector3 *colorHsv)
     }
     else
     {
-        DrawRectangleGradientEx(scaledBounds, Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), guiAlpha), Fade(Fade(colBlack, 0.6f), guiAlpha), Fade(Fade(colBlack, 0.6f), guiAlpha), Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), 0.6f), guiAlpha));
+        DrawRectangleGradientEx(bounds, Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BASE_COLOR_DISABLED)), 0.1f), guiAlpha), Fade(Fade(colBlack, 0.6f), guiAlpha), Fade(Fade(colBlack, 0.6f), guiAlpha), Fade(Fade(GetColor(GuiGetStyle(COLORPICKER, BORDER_COLOR_DISABLED)), 0.6f), guiAlpha));
     }
 
     GuiDrawRectangle(bounds, GuiGetStyle(COLORPICKER, BORDER_WIDTH), GetColor(GuiGetStyle(COLORPICKER, BORDER + state*3)), BLANK);
@@ -5388,7 +5369,7 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
                         {
                             if (textOffsetX <= (textBounds.width - glyphWidth - textBoundsWidthOffset - ellipsisWidth))
                             {
-                                DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX)*guiScale, (textBoundsPosition.y + textOffsetY)*guiScale }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE)*guiScale, GuiFade(tint, guiAlpha));
+                                DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX), (textBoundsPosition.y + textOffsetY) }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE), GuiFade(tint, guiAlpha));
                             }
                             else if (!textOverflow)
                             {
@@ -5396,13 +5377,13 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
 
                                 for (int j = 0; j < ellipsisWidth; j += ellipsisWidth/3)
                                 {
-                                    DrawTextCodepoint(guiFont, '.', RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX + j)*guiScale, (textBoundsPosition.y + textOffsetY)*guiScale }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE)*guiScale, GuiFade(tint, guiAlpha));
+                                    DrawTextCodepoint(guiFont, '.', RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX + j), (textBoundsPosition.y + textOffsetY) }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE), GuiFade(tint, guiAlpha));
                                 }
                             }
                         }
                         else
                         {
-                            DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX)*guiScale, (textBoundsPosition.y + textOffsetY)*guiScale }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE)*guiScale, GuiFade(tint, guiAlpha));
+                            DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX), (textBoundsPosition.y + textOffsetY) }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE), GuiFade(tint, guiAlpha));
                         }
                     }
                     else if ((wrapMode == TEXT_WRAP_CHAR) || (wrapMode == TEXT_WRAP_WORD))
@@ -5410,7 +5391,7 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
                         // Draw only glyphs inside the bounds
                         if ((textBoundsPosition.y + textOffsetY) <= (textBounds.y + textBounds.height - GuiGetStyle(DEFAULT, TEXT_SIZE)))
                         {
-                            DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX)*guiScale, (textBoundsPosition.y + textOffsetY)*guiScale }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE)*guiScale, GuiFade(tint, guiAlpha));
+                            DrawTextCodepoint(guiFont, codepoint, RAYGUI_CLITERAL(Vector2){ (textBoundsPosition.x + textOffsetX), (textBoundsPosition.y + textOffsetY) }, (float)GuiGetStyle(DEFAULT, TEXT_SIZE), GuiFade(tint, guiAlpha));
                         }
                     }
                 }
@@ -5426,15 +5407,13 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
     }
 
 #if defined(RAYGUI_DEBUG_TEXT_BOUNDS)
-    GuiDrawRectangle(RectangleScale(textBounds, guiScale), 0, WHITE, Fade(BLUE, 0.4f));
+    GuiDrawRectangle(textBounds, 0, WHITE, Fade(BLUE, 0.4f));
 #endif
 }
 
 // Gui draw rectangle using default raygui plain style with borders
 static void GuiDrawRectangle(Rectangle rec, int borderWidth, Color borderColor, Color color)
 {
-    rec = RectangleScale(rec, guiScale);
-
     if (color.a > 0)
     {
         // Draw rectangle filled with color
