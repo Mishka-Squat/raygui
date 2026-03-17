@@ -554,6 +554,12 @@ typedef enum {
     TEXT_WRAP_WORD
 } GuiTextWrapMode;
 
+// WARNING: Those values define the total size of the style data array,
+// if changed, previous saved styles could become incompatible
+#define RAYGUI_MAX_CONTROLS             16      // Maximum number of controls
+#define RAYGUI_MAX_PROPS_BASE           16      // Maximum number of base properties
+#define RAYGUI_MAX_PROPS_EXTENDED        8      // Maximum number of extended properties
+
 // Gui controls
 typedef enum {
     // Default -> populates to all controls when set
@@ -574,7 +580,7 @@ typedef enum {
     LISTVIEW,
     COLORPICKER,
     SCROLLBAR,
-    STATUSBAR
+    STATUSBAR,
 } GuiControl;
 
 // Gui base properties for every control
@@ -613,13 +619,13 @@ typedef enum {
 // NOTE: Those properties are common to all controls or global
 // WARNING: Only 8 slots vailable for those properties by default
 typedef enum {
-    TEXT_SIZE = 16,             // Text size (glyphs max height)
-    TEXT_SPACING,               // Text spacing between glyphs
-    LINE_COLOR,                 // Line control color
-    BACKGROUND_COLOR,           // Background color
-    TEXT_LINE_SPACING,          // Text spacing between lines
-    TEXT_ALIGNMENT_VERTICAL,    // Text vertical alignment inside text bounds (after border and padding)
-    TEXT_WRAP_MODE              // Text wrap-mode inside text bounds
+    TEXT_SIZE = RAYGUI_MAX_PROPS_BASE,          // Text size (glyphs max height)
+    TEXT_SPACING,                               // Text spacing between glyphs
+    LINE_COLOR,                                 // Line control color
+    BACKGROUND_COLOR,                           // Background color
+    TEXT_LINE_SPACING,                          // Text spacing between lines
+    TEXT_ALIGNMENT_VERTICAL,                    // Text vertical alignment inside text bounds (after border and padding)
+    TEXT_WRAP_MODE                              // Text wrap-mode inside text bounds
     //TEXT_DECORATION             // Text decoration: 0-None, 1-Underline, 2-Line-through, 3-Overline
     //TEXT_DECORATION_THICK       // Text decoration line thickness
 } GuiDefaultProperty;
@@ -636,59 +642,59 @@ typedef enum {
 
 // Toggle/ToggleGroup
 typedef enum {
-    GROUP_PADDING = 16,         // ToggleGroup separation between toggles
+    GROUP_PADDING = RAYGUI_MAX_PROPS_BASE,      // ToggleGroup separation between toggles
 } GuiToggleProperty;
 
 // Slider/SliderBar
 typedef enum {
-    SLIDER_WIDTH = 16,          // Slider size of internal bar
-    SLIDER_PADDING              // Slider/SliderBar internal bar padding
+    SLIDER_WIDTH = RAYGUI_MAX_PROPS_BASE,       // Slider size of internal bar
+    SLIDER_PADDING                              // Slider/SliderBar internal bar padding
 } GuiSliderProperty;
 
 // ProgressBar
 typedef enum {
-    PROGRESS_PADDING = 16,      // ProgressBar internal padding
-    PROGRESS_SIDE,              // ProgressBar increment side: 0-left->right, 1-right-left
+    PROGRESS_PADDING = RAYGUI_MAX_PROPS_BASE,   // ProgressBar internal padding
+    PROGRESS_SIDE,                              // ProgressBar increment side: 0-left->right, 1-right-left
 } GuiProgressBarProperty;
 
 // ScrollBar
 typedef enum {
-    ARROWS_SIZE = 16,           // ScrollBar arrows size
-    ARROWS_VISIBLE,             // ScrollBar arrows visible
-    SCROLL_SLIDER_PADDING,      // ScrollBar slider internal padding
-    SCROLL_SLIDER_SIZE,         // ScrollBar slider size
-    SCROLL_PADDING,             // ScrollBar scroll padding from arrows
-    SCROLL_SPEED,               // ScrollBar scrolling speed
+    ARROWS_SIZE = RAYGUI_MAX_PROPS_BASE,        // ScrollBar arrows size
+    ARROWS_VISIBLE,                             // ScrollBar arrows visible
+    SCROLL_SLIDER_PADDING,                      // ScrollBar slider internal padding
+    SCROLL_SLIDER_SIZE,                         // ScrollBar slider size
+    SCROLL_PADDING,                             // ScrollBar scroll padding from arrows
+    SCROLL_SPEED,                               // ScrollBar scrolling speed
 } GuiScrollBarProperty;
 
 // CheckBox
 typedef enum {
-    CHECK_PADDING = 16          // CheckBox internal check padding
+    CHECK_PADDING = RAYGUI_MAX_PROPS_BASE       // CheckBox internal check padding
 } GuiCheckBoxProperty;
 
 // ComboBox
 typedef enum {
-    COMBO_BUTTON_WIDTH = 16,    // ComboBox right button width
-    COMBO_BUTTON_SPACING        // ComboBox button separation
+    COMBO_BUTTON_WIDTH = RAYGUI_MAX_PROPS_BASE, // ComboBox right button width
+    COMBO_BUTTON_SPACING                        // ComboBox button separation
 } GuiComboBoxProperty;
 
 // DropdownBox
 typedef enum {
-    ARROW_PADDING = 16,         // DropdownBox arrow separation from border and items
-    DROPDOWN_ITEMS_SPACING,     // DropdownBox items separation
-    DROPDOWN_ARROW_HIDDEN,      // DropdownBox arrow hidden
-    DROPDOWN_ROLL_UP            // DropdownBox roll up flag (default rolls down)
+    ARROW_PADDING = RAYGUI_MAX_PROPS_BASE,      // DropdownBox arrow separation from border and items
+    DROPDOWN_ITEMS_SPACING,                     // DropdownBox items separation
+    DROPDOWN_ARROW_HIDDEN,                      // DropdownBox arrow hidden
+    DROPDOWN_ROLL_UP                            // DropdownBox roll up flag (default rolls down)
 } GuiDropdownBoxProperty;
 
 // TextBox/TextBoxMulti/ValueBox/Spinner
 typedef enum {
-    TEXT_READONLY = 16,         // TextBox in read-only mode: 0-text editable, 1-text no-editable
+    TEXT_READONLY = RAYGUI_MAX_PROPS_BASE,      // TextBox in read-only mode: 0-text editable, 1-text no-editable
 } GuiTextBoxProperty;
 
 // ValueBox/Spinner
 typedef enum {
-    SPINNER_BUTTON_WIDTH = 16,  // Spinner left/right buttons width
-    SPINNER_BUTTON_SPACING,     // Spinner buttons separation
+    SPINNER_BUTTON_WIDTH = RAYGUI_MAX_PROPS_BASE,   // Spinner left/right buttons width
+    SPINNER_BUTTON_SPACING,                         // Spinner buttons separation
 } GuiValueBoxProperty;
 
 // Control11
@@ -696,22 +702,31 @@ typedef enum {
 
 // ListView
 typedef enum {
-    LIST_ITEMS_HEIGHT = 16,     // ListView items height
-    LIST_ITEMS_SPACING,         // ListView items separation
-    SCROLLBAR_WIDTH,            // ListView scrollbar size (usually width)
-    SCROLLBAR_SIDE,             // ListView scrollbar side (0-SCROLLBAR_LEFT_SIDE, 1-SCROLLBAR_RIGHT_SIDE)
-    LIST_ITEMS_BORDER_NORMAL,   // ListView items border enabled in normal state
-    LIST_ITEMS_BORDER_WIDTH     // ListView items border width
+    LIST_ITEMS_HEIGHT = RAYGUI_MAX_PROPS_BASE,      // ListView items height
+    LIST_ITEMS_SPACING,                             // ListView items separation
+    SCROLLBAR_WIDTH,                                // ListView scrollbar size (usually width)
+    SCROLLBAR_SIDE,                                 // ListView scrollbar side (0-SCROLLBAR_LEFT_SIDE, 1-SCROLLBAR_RIGHT_SIDE)
+    LIST_ITEMS_BORDER_NORMAL,                       // ListView items border enabled in normal state
+    LIST_ITEMS_BORDER_WIDTH                         // ListView items border width
 } GuiListViewProperty;
 
 // ColorPicker
 typedef enum {
-    COLOR_SELECTOR_SIZE = 16,
-    HUEBAR_WIDTH,               // ColorPicker right hue bar width
-    HUEBAR_PADDING,             // ColorPicker right hue bar separation from panel
-    HUEBAR_SELECTOR_HEIGHT,     // ColorPicker right hue bar selector height
-    HUEBAR_SELECTOR_OVERFLOW    // ColorPicker right hue bar selector overflow
+    COLOR_SELECTOR_SIZE = RAYGUI_MAX_PROPS_BASE,
+    HUEBAR_WIDTH,                                   // ColorPicker right hue bar width
+    HUEBAR_PADDING,                                 // ColorPicker right hue bar separation from panel
+    HUEBAR_SELECTOR_HEIGHT,                         // ColorPicker right hue bar selector height
+    HUEBAR_SELECTOR_OVERFLOW                        // ColorPicker right hue bar selector overflow
 } GuiColorPickerProperty;
+
+// WindowBox
+//typedef enum {
+//    COLOR_SELECTOR_SIZE = RAYGUI_MAX_PROPS_BASE,
+//    HUEBAR_WIDTH,                                   // ColorPicker right hue bar width
+//    HUEBAR_PADDING,                                 // ColorPicker right hue bar separation from panel
+//    HUEBAR_SELECTOR_HEIGHT,                         // ColorPicker right hue bar selector height
+//    HUEBAR_SELECTOR_OVERFLOW                        // ColorPicker right hue bar selector overflow
+//} GuiColorPickerProperty;
 
 #define SCROLLBAR_LEFT_SIDE     0
 #define SCROLLBAR_RIGHT_SIDE    1
@@ -1418,12 +1433,6 @@ static unsigned int *guiIconsPtr = guiIcons;
 #ifndef RAYGUI_ICON_SIZE
     #define RAYGUI_ICON_SIZE             0
 #endif
-
-// WARNING: Those values define the total size of the style data array,
-// if changed, previous saved styles could become incompatible
-#define RAYGUI_MAX_CONTROLS             16      // Maximum number of controls
-#define RAYGUI_MAX_PROPS_BASE           16      // Maximum number of base properties
-#define RAYGUI_MAX_PROPS_EXTENDED        8      // Maximum number of extended properties
 
 //----------------------------------------------------------------------------------
 // Module Types and Structures Definition
@@ -5411,7 +5420,7 @@ static void GuiDrawText(const char *text, Rectangle textBounds, int alignment, C
         }
 
         if (wrapMode == TEXT_WRAP_NONE) posOffsetY += (float)(GuiGetStyle(DEFAULT, TEXT_SIZE) + GuiGetStyle(DEFAULT, TEXT_LINE_SPACING));
-        else if ((wrapMode == TEXT_WRAP_CHAR) || (wrapMode == TEXT_WRAP_WORD)) 
+        else if ((wrapMode == TEXT_WRAP_CHAR) || (wrapMode == TEXT_WRAP_WORD))
             posOffsetY += (textOffsetY + GuiGetStyle(DEFAULT, TEXT_SIZE));
         //---------------------------------------------------------------------------------
     }
