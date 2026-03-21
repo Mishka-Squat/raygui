@@ -15,22 +15,22 @@
 
 // Custom style name: Lavanda
 static const GuiStyleProp lavandaStyleProps[LAVANDA_STYLE_PROPS_COUNT] = {
-    { 0, 0, (int)0xab9bd3ff },    // DEFAULT_BORDER_COLOR_NORMAL 
-    { 0, 1, (int)0x3e4350ff },    // DEFAULT_BASE_COLOR_NORMAL 
-    { 0, 2, (int)0xdadaf4ff },    // DEFAULT_TEXT_COLOR_NORMAL 
-    { 0, 3, (int)0xee84a0ff },    // DEFAULT_BORDER_COLOR_FOCUSED 
-    { 0, 4, (int)0xf4b7c7ff },    // DEFAULT_BASE_COLOR_FOCUSED 
-    { 0, 5, (int)0xb7657bff },    // DEFAULT_TEXT_COLOR_FOCUSED 
-    { 0, 6, (int)0xd5c8dbff },    // DEFAULT_BORDER_COLOR_PRESSED 
-    { 0, 7, (int)0x966ec0ff },    // DEFAULT_BASE_COLOR_PRESSED 
-    { 0, 8, (int)0xd7ccf7ff },    // DEFAULT_TEXT_COLOR_PRESSED 
-    { 0, 9, (int)0x8fa2bdff },    // DEFAULT_BORDER_COLOR_DISABLED 
-    { 0, 10, (int)0x6b798dff },    // DEFAULT_BASE_COLOR_DISABLED 
-    { 0, 11, (int)0x8292a9ff },    // DEFAULT_TEXT_COLOR_DISABLED 
-    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE 
-    { 0, 18, (int)0x84adb7ff },    // DEFAULT_LINE_COLOR 
-    { 0, 19, (int)0x5b5b81ff },    // DEFAULT_BACKGROUND_COLOR 
-    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING 
+    { 0, 0, (int)0xab9bd3ff },    // DEFAULT_BORDER_COLOR_NORMAL
+    { 0, 1, (int)0x3e4350ff },    // DEFAULT_BASE_COLOR_NORMAL
+    { 0, 2, (int)0xdadaf4ff },    // DEFAULT_TEXT_COLOR_NORMAL
+    { 0, 3, (int)0xee84a0ff },    // DEFAULT_BORDER_COLOR_FOCUSED
+    { 0, 4, (int)0xf4b7c7ff },    // DEFAULT_BASE_COLOR_FOCUSED
+    { 0, 5, (int)0xb7657bff },    // DEFAULT_TEXT_COLOR_FOCUSED
+    { 0, 6, (int)0xd5c8dbff },    // DEFAULT_BORDER_COLOR_PRESSED
+    { 0, 7, (int)0x966ec0ff },    // DEFAULT_BASE_COLOR_PRESSED
+    { 0, 8, (int)0xd7ccf7ff },    // DEFAULT_TEXT_COLOR_PRESSED
+    { 0, 9, (int)0x8fa2bdff },    // DEFAULT_BORDER_COLOR_DISABLED
+    { 0, 10, (int)0x6b798dff },    // DEFAULT_BASE_COLOR_DISABLED
+    { 0, 11, (int)0x8292a9ff },    // DEFAULT_TEXT_COLOR_DISABLED
+    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE
+    { 0, 18, (int)0x84adb7ff },    // DEFAULT_LINE_COLOR
+    { 0, 19, (int)0x5b5b81ff },    // DEFAULT_BACKGROUND_COLOR
+    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING
 };
 
 // WARNING: This style uses a custom font: "Cartridge.ttf" (size: 16, spacing: 1)
@@ -581,7 +581,7 @@ static void GuiLoadStyleLavanda(void)
 
     // Load texture from image
     font.texture = LoadTextureFromImage(imFont);
-    UnloadImage(&imFont);  // Uncompressed image data can be unloaded from memory
+    UnloadImage(imFont);  // Uncompressed image data can be unloaded from memory
 
     // Copy char recs data from global fontRecs
     // NOTE: Required to avoid issues if trying to free font

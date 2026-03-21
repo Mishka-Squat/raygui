@@ -15,22 +15,22 @@
 
 // Custom style name: Ashes
 static const GuiStyleProp ashesStyleProps[ASHES_STYLE_PROPS_COUNT] = {
-    { 0, 0, (int)0xf0f0f0ff },    // DEFAULT_BORDER_COLOR_NORMAL 
-    { 0, 1, (int)0x868686ff },    // DEFAULT_BASE_COLOR_NORMAL 
-    { 0, 2, (int)0xe6e6e6ff },    // DEFAULT_TEXT_COLOR_NORMAL 
-    { 0, 3, (int)0x929999ff },    // DEFAULT_BORDER_COLOR_FOCUSED 
-    { 0, 4, (int)0xeaeaeaff },    // DEFAULT_BASE_COLOR_FOCUSED 
-    { 0, 5, (int)0x98a1a8ff },    // DEFAULT_TEXT_COLOR_FOCUSED 
-    { 0, 6, (int)0x3f3f3fff },    // DEFAULT_BORDER_COLOR_PRESSED 
-    { 0, 7, (int)0xf6f6f6ff },    // DEFAULT_BASE_COLOR_PRESSED 
-    { 0, 8, (int)0x414141ff },    // DEFAULT_TEXT_COLOR_PRESSED 
-    { 0, 9, (int)0x8b8b8bff },    // DEFAULT_BORDER_COLOR_DISABLED 
-    { 0, 10, (int)0x777777ff },    // DEFAULT_BASE_COLOR_DISABLED 
-    { 0, 11, (int)0x959595ff },    // DEFAULT_TEXT_COLOR_DISABLED 
-    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE 
-    { 0, 18, (int)0x9dadb1ff },    // DEFAULT_LINE_COLOR 
-    { 0, 19, (int)0x6b6b6bff },    // DEFAULT_BACKGROUND_COLOR 
-    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING 
+    { 0, 0, (int)0xf0f0f0ff },    // DEFAULT_BORDER_COLOR_NORMAL
+    { 0, 1, (int)0x868686ff },    // DEFAULT_BASE_COLOR_NORMAL
+    { 0, 2, (int)0xe6e6e6ff },    // DEFAULT_TEXT_COLOR_NORMAL
+    { 0, 3, (int)0x929999ff },    // DEFAULT_BORDER_COLOR_FOCUSED
+    { 0, 4, (int)0xeaeaeaff },    // DEFAULT_BASE_COLOR_FOCUSED
+    { 0, 5, (int)0x98a1a8ff },    // DEFAULT_TEXT_COLOR_FOCUSED
+    { 0, 6, (int)0x3f3f3fff },    // DEFAULT_BORDER_COLOR_PRESSED
+    { 0, 7, (int)0xf6f6f6ff },    // DEFAULT_BASE_COLOR_PRESSED
+    { 0, 8, (int)0x414141ff },    // DEFAULT_TEXT_COLOR_PRESSED
+    { 0, 9, (int)0x8b8b8bff },    // DEFAULT_BORDER_COLOR_DISABLED
+    { 0, 10, (int)0x777777ff },    // DEFAULT_BASE_COLOR_DISABLED
+    { 0, 11, (int)0x959595ff },    // DEFAULT_TEXT_COLOR_DISABLED
+    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE
+    { 0, 18, (int)0x9dadb1ff },    // DEFAULT_LINE_COLOR
+    { 0, 19, (int)0x6b6b6bff },    // DEFAULT_BACKGROUND_COLOR
+    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING
 };
 
 // WARNING: This style uses a custom font: "v5loxical.ttf" (size: 16, spacing: 1)
@@ -539,7 +539,7 @@ static void GuiLoadStyleAshes(void)
 
     // Load texture from image
     font.texture = LoadTextureFromImage(imFont);
-    UnloadImage(&imFont);  // Uncompressed image data can be unloaded from memory
+    UnloadImage(imFont);  // Uncompressed image data can be unloaded from memory
 
     // Copy char recs data from global fontRecs
     // NOTE: Required to avoid issues if trying to free font

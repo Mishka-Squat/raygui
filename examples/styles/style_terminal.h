@@ -15,23 +15,23 @@
 
 // Custom style name: Terminal
 static const GuiStyleProp terminalStyleProps[TERMINAL_STYLE_PROPS_COUNT] = {
-    { 0, 0, (int)0x1c8d00ff },    // DEFAULT_BORDER_COLOR_NORMAL 
-    { 0, 1, (int)0x161313ff },    // DEFAULT_BASE_COLOR_NORMAL 
-    { 0, 2, (int)0x38f620ff },    // DEFAULT_TEXT_COLOR_NORMAL 
-    { 0, 3, (int)0xc3fbc6ff },    // DEFAULT_BORDER_COLOR_FOCUSED 
-    { 0, 4, (int)0x43bf2eff },    // DEFAULT_BASE_COLOR_FOCUSED 
-    { 0, 5, (int)0xdcfadcff },    // DEFAULT_TEXT_COLOR_FOCUSED 
-    { 0, 6, (int)0x1f5b19ff },    // DEFAULT_BORDER_COLOR_PRESSED 
-    { 0, 7, (int)0x43ff28ff },    // DEFAULT_BASE_COLOR_PRESSED 
-    { 0, 8, (int)0x1e6f15ff },    // DEFAULT_TEXT_COLOR_PRESSED 
-    { 0, 9, (int)0x223b22ff },    // DEFAULT_BORDER_COLOR_DISABLED 
-    { 0, 10, (int)0x182c18ff },    // DEFAULT_BASE_COLOR_DISABLED 
-    { 0, 11, (int)0x244125ff },    // DEFAULT_TEXT_COLOR_DISABLED 
-    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE 
-    { 0, 17, (int)0x00000000 },    // DEFAULT_TEXT_SPACING 
-    { 0, 18, (int)0xe6fce3ff },    // DEFAULT_LINE_COLOR 
-    { 0, 19, (int)0x0c1505ff },    // DEFAULT_BACKGROUND_COLOR 
-    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING 
+    { 0, 0, (int)0x1c8d00ff },    // DEFAULT_BORDER_COLOR_NORMAL
+    { 0, 1, (int)0x161313ff },    // DEFAULT_BASE_COLOR_NORMAL
+    { 0, 2, (int)0x38f620ff },    // DEFAULT_TEXT_COLOR_NORMAL
+    { 0, 3, (int)0xc3fbc6ff },    // DEFAULT_BORDER_COLOR_FOCUSED
+    { 0, 4, (int)0x43bf2eff },    // DEFAULT_BASE_COLOR_FOCUSED
+    { 0, 5, (int)0xdcfadcff },    // DEFAULT_TEXT_COLOR_FOCUSED
+    { 0, 6, (int)0x1f5b19ff },    // DEFAULT_BORDER_COLOR_PRESSED
+    { 0, 7, (int)0x43ff28ff },    // DEFAULT_BASE_COLOR_PRESSED
+    { 0, 8, (int)0x1e6f15ff },    // DEFAULT_TEXT_COLOR_PRESSED
+    { 0, 9, (int)0x223b22ff },    // DEFAULT_BORDER_COLOR_DISABLED
+    { 0, 10, (int)0x182c18ff },    // DEFAULT_BASE_COLOR_DISABLED
+    { 0, 11, (int)0x244125ff },    // DEFAULT_TEXT_COLOR_DISABLED
+    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE
+    { 0, 17, (int)0x00000000 },    // DEFAULT_TEXT_SPACING
+    { 0, 18, (int)0xe6fce3ff },    // DEFAULT_LINE_COLOR
+    { 0, 19, (int)0x0c1505ff },    // DEFAULT_BACKGROUND_COLOR
+    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING
 };
 
 // WARNING: This style uses a custom font: "Mecha.ttf" (size: 16, spacing: 0)
@@ -543,7 +543,7 @@ static void GuiLoadStyleTerminal(void)
 
     // Load texture from image
     font.texture = LoadTextureFromImage(imFont);
-    UnloadImage(&imFont);  // Uncompressed image data can be unloaded from memory
+    UnloadImage(imFont);  // Uncompressed image data can be unloaded from memory
 
     // Copy char recs data from global fontRecs
     // NOTE: Required to avoid issues if trying to free font

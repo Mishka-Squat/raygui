@@ -15,39 +15,39 @@
 
 // Custom style name: Sunny
 static const GuiStyleProp sunnyStyleProps[SUNNY_STYLE_PROPS_COUNT] = {
-    { 0, 0, (int)0x9c760aff },    // DEFAULT_BORDER_COLOR_NORMAL 
-    { 0, 1, (int)0x594006ff },    // DEFAULT_BASE_COLOR_NORMAL 
-    { 0, 2, (int)0xf6d519ff },    // DEFAULT_TEXT_COLOR_NORMAL 
-    { 0, 3, (int)0xf6ee89ff },    // DEFAULT_BORDER_COLOR_FOCUSED 
-    { 0, 4, (int)0xf5f3d1ff },    // DEFAULT_BASE_COLOR_FOCUSED 
-    { 0, 5, (int)0xf4cd19ff },    // DEFAULT_TEXT_COLOR_FOCUSED 
-    { 0, 6, (int)0xf7e580ff },    // DEFAULT_BORDER_COLOR_PRESSED 
-    { 0, 7, (int)0xf7f2c1ff },    // DEFAULT_BASE_COLOR_PRESSED 
-    { 0, 8, (int)0x52470aff },    // DEFAULT_TEXT_COLOR_PRESSED 
-    { 0, 9, (int)0xc0be92ff },    // DEFAULT_BORDER_COLOR_DISABLED 
-    { 0, 10, (int)0xd3d3a1ff },    // DEFAULT_BASE_COLOR_DISABLED 
-    { 0, 11, (int)0xbcbc89ff },    // DEFAULT_TEXT_COLOR_DISABLED 
-    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE 
-    { 0, 17, (int)0x00000000 },    // DEFAULT_TEXT_SPACING 
-    { 0, 18, (int)0x725706ff },    // DEFAULT_LINE_COLOR 
-    { 0, 19, (int)0xf0be4bff },    // DEFAULT_BACKGROUND_COLOR 
-    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING 
-    { 1, 2, (int)0x504506ff },    // LABEL_TEXT_COLOR_NORMAL 
-    { 1, 5, (int)0xfdeb9bff },    // LABEL_TEXT_COLOR_FOCUSED 
-    { 1, 8, (int)0xf5e8a4ff },    // LABEL_TEXT_COLOR_PRESSED 
-    { 2, 2, (int)0xebc21fff },    // BUTTON_TEXT_COLOR_NORMAL 
-    { 3, 2, (int)0xebc21fff },    // TOGGLE_TEXT_COLOR_NORMAL 
-    { 4, 2, (int)0x81700fff },    // SLIDER_TEXT_COLOR_NORMAL 
-    { 4, 5, (int)0xf4e49aff },    // SLIDER_TEXT_COLOR_FOCUSED 
-    { 7, 2, (int)0xebc21fff },    // COMBOBOX_TEXT_COLOR_NORMAL 
-    { 8, 2, (int)0xefd87bff },    // DROPDOWNBOX_TEXT_COLOR_NORMAL 
-    { 8, 5, (int)0xd4b219ff },    // DROPDOWNBOX_TEXT_COLOR_FOCUSED 
-    { 9, 2, (int)0x7a680bff },    // TEXTBOX_TEXT_COLOR_NORMAL 
-    { 9, 5, (int)0xad931fff },    // TEXTBOX_TEXT_COLOR_FOCUSED 
-    { 10, 2, (int)0x62570eff },    // VALUEBOX_TEXT_COLOR_NORMAL 
-    { 10, 5, (int)0xf2df88ff },    // VALUEBOX_TEXT_COLOR_FOCUSED 
-    { 12, 2, (int)0xf4e798ff },    // LISTVIEW_TEXT_COLOR_NORMAL 
-    { 15, 2, (int)0xebc21fff },    // STATUSBAR_TEXT_COLOR_NORMAL 
+    { 0, 0, (int)0x9c760aff },    // DEFAULT_BORDER_COLOR_NORMAL
+    { 0, 1, (int)0x594006ff },    // DEFAULT_BASE_COLOR_NORMAL
+    { 0, 2, (int)0xf6d519ff },    // DEFAULT_TEXT_COLOR_NORMAL
+    { 0, 3, (int)0xf6ee89ff },    // DEFAULT_BORDER_COLOR_FOCUSED
+    { 0, 4, (int)0xf5f3d1ff },    // DEFAULT_BASE_COLOR_FOCUSED
+    { 0, 5, (int)0xf4cd19ff },    // DEFAULT_TEXT_COLOR_FOCUSED
+    { 0, 6, (int)0xf7e580ff },    // DEFAULT_BORDER_COLOR_PRESSED
+    { 0, 7, (int)0xf7f2c1ff },    // DEFAULT_BASE_COLOR_PRESSED
+    { 0, 8, (int)0x52470aff },    // DEFAULT_TEXT_COLOR_PRESSED
+    { 0, 9, (int)0xc0be92ff },    // DEFAULT_BORDER_COLOR_DISABLED
+    { 0, 10, (int)0xd3d3a1ff },    // DEFAULT_BASE_COLOR_DISABLED
+    { 0, 11, (int)0xbcbc89ff },    // DEFAULT_TEXT_COLOR_DISABLED
+    { 0, 16, (int)0x00000010 },    // DEFAULT_TEXT_SIZE
+    { 0, 17, (int)0x00000000 },    // DEFAULT_TEXT_SPACING
+    { 0, 18, (int)0x725706ff },    // DEFAULT_LINE_COLOR
+    { 0, 19, (int)0xf0be4bff },    // DEFAULT_BACKGROUND_COLOR
+    { 0, 20, (int)0x00000008 },    // DEFAULT_TEXT_LINE_SPACING
+    { 1, 2, (int)0x504506ff },    // LABEL_TEXT_COLOR_NORMAL
+    { 1, 5, (int)0xfdeb9bff },    // LABEL_TEXT_COLOR_FOCUSED
+    { 1, 8, (int)0xf5e8a4ff },    // LABEL_TEXT_COLOR_PRESSED
+    { 2, 2, (int)0xebc21fff },    // BUTTON_TEXT_COLOR_NORMAL
+    { 3, 2, (int)0xebc21fff },    // TOGGLE_TEXT_COLOR_NORMAL
+    { 4, 2, (int)0x81700fff },    // SLIDER_TEXT_COLOR_NORMAL
+    { 4, 5, (int)0xf4e49aff },    // SLIDER_TEXT_COLOR_FOCUSED
+    { 7, 2, (int)0xebc21fff },    // COMBOBOX_TEXT_COLOR_NORMAL
+    { 8, 2, (int)0xefd87bff },    // DROPDOWNBOX_TEXT_COLOR_NORMAL
+    { 8, 5, (int)0xd4b219ff },    // DROPDOWNBOX_TEXT_COLOR_FOCUSED
+    { 9, 2, (int)0x7a680bff },    // TEXTBOX_TEXT_COLOR_NORMAL
+    { 9, 5, (int)0xad931fff },    // TEXTBOX_TEXT_COLOR_FOCUSED
+    { 10, 2, (int)0x62570eff },    // VALUEBOX_TEXT_COLOR_NORMAL
+    { 10, 5, (int)0xf2df88ff },    // VALUEBOX_TEXT_COLOR_FOCUSED
+    { 12, 2, (int)0xf4e798ff },    // LISTVIEW_TEXT_COLOR_NORMAL
+    { 15, 2, (int)0xebc21fff },    // STATUSBAR_TEXT_COLOR_NORMAL
 };
 
 // WARNING: This style uses a custom font: "GMSN.ttf" (size: 16, spacing: 0)
@@ -588,7 +588,7 @@ static void GuiLoadStyleSunny(void)
 
     // Load texture from image
     font.texture = LoadTextureFromImage(imFont);
-    UnloadImage(&imFont);  // Uncompressed image data can be unloaded from memory
+    UnloadImage(imFont);  // Uncompressed image data can be unloaded from memory
 
     // Copy char recs data from global fontRecs
     // NOTE: Required to avoid issues if trying to free font

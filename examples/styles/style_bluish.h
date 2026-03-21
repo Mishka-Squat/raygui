@@ -15,20 +15,20 @@
 
 // Custom style name: Bluish
 static const GuiStyleProp bluishStyleProps[BLUISH_STYLE_PROPS_COUNT] = {
-    { 0, 0, (int)0x5ca6a6ff },    // DEFAULT_BORDER_COLOR_NORMAL 
-    { 0, 1, (int)0xb4e8f3ff },    // DEFAULT_BASE_COLOR_NORMAL 
-    { 0, 2, (int)0x447e77ff },    // DEFAULT_TEXT_COLOR_NORMAL 
-    { 0, 3, (int)0x5f8792ff },    // DEFAULT_BORDER_COLOR_FOCUSED 
-    { 0, 4, (int)0xcdeff7ff },    // DEFAULT_BASE_COLOR_FOCUSED 
-    { 0, 5, (int)0x4c6c74ff },    // DEFAULT_TEXT_COLOR_FOCUSED 
-    { 0, 6, (int)0x3b5b5fff },    // DEFAULT_BORDER_COLOR_PRESSED 
-    { 0, 7, (int)0xeaffffff },    // DEFAULT_BASE_COLOR_PRESSED 
-    { 0, 8, (int)0x275057ff },    // DEFAULT_TEXT_COLOR_PRESSED 
-    { 0, 9, (int)0x96aaacff },    // DEFAULT_BORDER_COLOR_DISABLED 
-    { 0, 10, (int)0xc8d7d9ff },    // DEFAULT_BASE_COLOR_DISABLED 
-    { 0, 11, (int)0x8c9c9eff },    // DEFAULT_TEXT_COLOR_DISABLED 
-    { 0, 18, (int)0x84adb7ff },    // DEFAULT_LINE_COLOR 
-    { 0, 19, (int)0xe8eef1ff },    // DEFAULT_BACKGROUND_COLOR 
+    { 0, 0, (int)0x5ca6a6ff },    // DEFAULT_BORDER_COLOR_NORMAL
+    { 0, 1, (int)0xb4e8f3ff },    // DEFAULT_BASE_COLOR_NORMAL
+    { 0, 2, (int)0x447e77ff },    // DEFAULT_TEXT_COLOR_NORMAL
+    { 0, 3, (int)0x5f8792ff },    // DEFAULT_BORDER_COLOR_FOCUSED
+    { 0, 4, (int)0xcdeff7ff },    // DEFAULT_BASE_COLOR_FOCUSED
+    { 0, 5, (int)0x4c6c74ff },    // DEFAULT_TEXT_COLOR_FOCUSED
+    { 0, 6, (int)0x3b5b5fff },    // DEFAULT_BORDER_COLOR_PRESSED
+    { 0, 7, (int)0xeaffffff },    // DEFAULT_BASE_COLOR_PRESSED
+    { 0, 8, (int)0x275057ff },    // DEFAULT_TEXT_COLOR_PRESSED
+    { 0, 9, (int)0x96aaacff },    // DEFAULT_BORDER_COLOR_DISABLED
+    { 0, 10, (int)0xc8d7d9ff },    // DEFAULT_BASE_COLOR_DISABLED
+    { 0, 11, (int)0x8c9c9eff },    // DEFAULT_TEXT_COLOR_DISABLED
+    { 0, 18, (int)0x84adb7ff },    // DEFAULT_LINE_COLOR
+    { 0, 19, (int)0xe8eef1ff },    // DEFAULT_BACKGROUND_COLOR
 };
 
 // WARNING: This style uses a custom font: "homespun.ttf" (size: 10, spacing: 1)
@@ -584,7 +584,7 @@ static void GuiLoadStyleBluish(void)
 
     // Load texture from image
     font.texture = LoadTextureFromImage(imFont);
-    UnloadImage(&imFont);  // Uncompressed image data can be unloaded from memory
+    UnloadImage(imFont);  // Uncompressed image data can be unloaded from memory
 
     // Copy char recs data from global fontRecs
     // NOTE: Required to avoid issues if trying to free font
